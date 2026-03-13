@@ -12,7 +12,7 @@ export default class List {
     this.li.style.marginTop = "1rem";
 
     this.btnEdite = document.createElement("button");
-    this.btnEdite.id = "btn_edite";
+    this.btnEdite.id = "btn_edit";
     this.btnEdite.dataset.id = data.id;
     this.btnEdite.textContent = "Editar";
     this.btnEdite.style.marginRight = ".5rem";

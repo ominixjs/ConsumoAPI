@@ -91,8 +91,8 @@ app.put("/game/:id", (req, res) => {
   const { nome, precoSteam, anoLancamento } = req.body;
 
   if (nome != undefined) game.nome = nome;
-  if (nome != undefined) game.precoSteam = precoSteam;
-  if (nome != undefined) game.anoLancamento = anoLancamento;
+  if (precoSteam != undefined) game.precoSteam = precoSteam;
+  if (anoLancamento != undefined) game.anoLancamento = anoLancamento;
 
   res.sendStatus(200);
 });
