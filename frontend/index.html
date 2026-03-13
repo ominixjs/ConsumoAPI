@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loja</title>
+  </head>
+  <body>
+    <h2>Lista de jogos</h2>
+    <ul id="game_list"></ul>
+
+    <h3>Novo jogo</h3>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      placeholder="Nome"
+      value="Red Dead Redemption 2"
+    />
+    <br />
+
+    <input
+      type="number"
+      name="published"
+      id="published"
+      placeholder="Ano lançamento"
+      value="2019"
+    /><br />
+
+    <input
+      type="number"
+      name="price"
+      id="price"
+      placeholder="Preço base"
+      value="199.90"
+    /><br />
+    <br />
+
+    <button type="submit" id="button_create">Adicionar</button>
+
+    <h3>Editar Dados</h3>
+    <input
+      type="text"
+      name="nameEdit"
+      id="nameEdit"
+      placeholder="Nome"
+      value="Red Dead Redemption 2"
+    />
+    <br />
+
+    <input
+      type="number"
+      name="publishedEdit"
+      id="publishedEdit"
+      placeholder="Ano lançamento"
+      value="2019"
+    /><br />
+
+    <input
+      type="number"
+      name="priceEdit"
+      id="priceEdit"
+      placeholder="Preço base"
+      value="199.90"
+    /><br />
+    <br />
+
+    <button type="submit" id="button_edit">Editar</button>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="module" src="js/main.js"></script>
+</html>
