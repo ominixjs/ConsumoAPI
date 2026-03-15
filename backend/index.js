@@ -1,12 +1,38 @@
-import express, { json } from "express";
+import express from "express";
 const app = express();
 import cors from "cors";
 import jwt from "jsonwebtoken";
+
+const secret = "lulamolusco";
 
 app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+function middlewareAuth(req, res, next) {
+  const authToken = req.headers["authorization"];
+
+  if (authToken == undefined) {
+    res.status(401);
+    console.log(authToken);
+    return res.json({ err: "Token inválido!" });
+  }
+
+  const bearer = authToken.split(" ");
+  const token = bearer[1];
+
+  jwt.verify(token, secret, (err, data) => {
+    if (err) {
+      res.status(401);
+      return res.json({ err: "Token inválido!" });
+    }
+
+    req.token = token;
+    req.loggerUser = { id: data.id, email: data.email };
+    next();
+  });
+}
 
 const db = {
   games: [
@@ -81,8 +107,8 @@ const db = {
   ],
 };
 
-app.get("/games", (req, res) => {
-  res.statusCode(200);
+app.get("/games", middlewareAuth, (req, res) => {
+  res.statusCode = 200;
   res.json(db.games);
 });
 
@@ -158,8 +184,20 @@ app.post("/auth", (req, res) => {
     return res.json({ err: "Senha inválida" });
   }
 
-  res.status(200);
-  res.json({ success: "Seja bem vindo!" });
+  jwt.sign(
+    { id: user.id, email: user.email },
+    secret,
+    { expiresIn: "24h" },
+    (err, token) => {
+      if (err) {
+        res.status(400);
+        return res.json({ erro: "Falha interna!" });
+      }
+
+      res.status(200);
+      res.json({ token: token });
+    },
+  );
 });
 
 app.listen(3000, () => {
