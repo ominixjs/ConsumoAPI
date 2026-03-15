@@ -1,5 +1,5 @@
 import ValidateInput from "./ValidateInput.js";
-import NewItemForAPI from "../api/CreateItemForAPI.js";
+import CreateItemForAPI from "../api/CreateItemForAPI.js";
 
 const btnCreate = document.getElementById("button_create");
 
@@ -14,6 +14,6 @@ if (btnCreate != null) {
       return;
     }
 
-    NewItemForAPI(getData);
+    CreateItemForAPI(getData);
   });
 }

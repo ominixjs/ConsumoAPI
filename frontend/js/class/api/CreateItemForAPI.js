@@ -1,4 +1,4 @@
-export default function NewItemForAPI(item) {
+export default function CreateItemForAPI(item) {
   axios
     .post("http://localhost:3000/game", item)
     .then((response) => {
