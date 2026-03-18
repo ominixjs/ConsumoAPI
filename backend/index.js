@@ -2,37 +2,14 @@ import express from "express";
 const app = express();
 import cors from "cors";
 import jwt from "jsonwebtoken";
+import middlewareAuth from "./middleware/middlewareAuth.js";
 
-const secret = "lulamolusco";
+export const secret = "lulamolusco";
 
 app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-function middlewareAuth(req, res, next) {
-  const authToken = req.headers["authorization"];
-
-  if (authToken == undefined) {
-    res.status(401);
-    console.log(authToken);
-    return res.json({ err: "Token inválido!" });
-  }
-
-  const bearer = authToken.split(" ");
-  const token = bearer[1];
-
-  jwt.verify(token, secret, (err, data) => {
-    if (err) {
-      res.status(401);
-      return res.json({ err: "Token inválido!" });
-    }
-
-    req.token = token;
-    req.loggerUser = { id: data.id, email: data.email };
-    next();
-  });
-}
 
 const db = {
   games: [
@@ -107,7 +84,7 @@ const db = {
   ],
 };
 
-app.get("/games", (req, res) => {
+app.get("/games", middlewareAuth, (req, res) => {
   res.statusCode = 200;
   res.json(db.games);
 });

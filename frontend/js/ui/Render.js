@@ -1,4 +1,4 @@
-import List from "../ui/List.js";
+import List from "./List.js";
 
 export default class Render {
   // Cria uma lista no DOM

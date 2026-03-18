@@ -1,4 +1,4 @@
-import ValidateInput from "./ValidateInput.js";
+import ValidateInput from "../utils/ValidateInput.js";
 import CreateItemForAPI from "../api/CreateItemForAPI.js";
 
 const btnCreate = document.getElementById("button_create");

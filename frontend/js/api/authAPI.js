@@ -3,9 +3,8 @@ export default function AuthAPI(email, senha) {
     .post("http://localhost:3000/auth", { email, senha })
     .then((response) => {
       if (response.status == 200) {
+        localStorage.setItem("token", response.data.token);
         alert("Seja bem vindo!");
-        console.log(response.data);
-        
       }
     })
     .catch((err) => {
