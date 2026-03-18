@@ -107,7 +107,7 @@ const db = {
   ],
 };
 
-app.get("/games", middlewareAuth, (req, res) => {
+app.get("/games", (req, res) => {
   res.statusCode = 200;
   res.json(db.games);
 });
